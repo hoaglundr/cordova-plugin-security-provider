@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bsorrentino/cordova-broadcaster.git"
+    "url": "git+https://github.com/p4bl1t0/cordova-plugin-security-provider.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -23,10 +23,10 @@
         "2.3.0": { "cordova": ">4.0.0" }
       }
   },
-  "author": "bsorrentino",
+  "author": "p4bl1t0",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bsorrentino/cordova-broadcaster/issues"
+    "url": "https://github.com/p4bl1t0/cordova-plugin-security-provider/issues"
   },
-  "homepage": "https://github.com/bsorrentino/cordova-broadcaster#readme"
+  "homepage": "https://github.com/p4bl1t0/cordova-plugin-security-provider#readme"
 }
