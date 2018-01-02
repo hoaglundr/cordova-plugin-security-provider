@@ -21,7 +21,7 @@ import android.util.Log;
  */
 public class CDVSecurityProvider extends CordovaPlugin {
 
-    private static String TAG =  CDVSecurityProvider.class.getSimpleName();
+    private static String LOG_TAG =  CDVSecurityProvider.class.getSimpleName();
 
     public static final String EVENTNAME_ERROR = "event name null or empty.";
 
