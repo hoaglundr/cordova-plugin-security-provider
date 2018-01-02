@@ -2,7 +2,7 @@
 
 Cordova Plugin to allow message exchange between javascript and native (and viceversa).
 
-[![npm](https://img.shields.io/npm/v/cordova-plugin-broadcaster.svg)](https://www.npmjs.com/package/cordova-plugin-broadcaster) [![Join the chat at https://gitter.im/bsorrentino/cordova-broadcaster](https://badges.gitter.im/bsorrentino/cordova-broadcaster.svg)](https://gitter.im/bsorrentino/cordova-broadcaster?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm](https://img.shields.io/npm/v/cordova-plugin-security-provider.svg)](https://www.npmjs.com/package/cordova-plugin-security-provider) [![Join the chat at https://gitter.im/bsorrentino/cordova-broadcaster](https://badges.gitter.im/bsorrentino/cordova-broadcaster.svg)](https://gitter.im/bsorrentino/cordova-broadcaster?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 
@@ -27,7 +27,7 @@ Android | **[LocalBroadcastManager](http://developer.android.com/reference/andro
 $ cordova create <PATH> [ID [NAME [CONFIG]]] [options]
 $ cd <PATH>
 $ cordova platform add [ios|android]
-$ cordova plugin add cordova-plugin-broadcaster
+$ cordova plugin add cordova-plugin-security-provider
 ```
 
 ## Usage:

@@ -1,12 +1,11 @@
 {
-  "name": "cordova-plugin-broadcaster",
+  "name": "cordova-plugin-security-provider",
   "version": "3.0.0",
   "description": "Allow send message from Javascript to Native",
   "cordova": {
-    "id": "cordova-plugin-broadcaster",
+    "id": "cordova-plugin-security-provider",
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   },
   "repository": {
