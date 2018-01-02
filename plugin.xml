@@ -21,8 +21,8 @@
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml" />
     <source-file src="src/android/CDVSecurityProvider.java" target-dir="src/org/bsc/cordova" />
-    <framework src="com.android.support:support-v4:+" />
-    <framework src="com.google.android.gms.common:+" />
+    <framework src="com.android.support:support-v4:23.4.0" />
+    <framework src="com.google.android.gms:play-services:11.0.1" />
     <framework src="security.gradle" custom="true" type="gradleReference"/>
   </platform>
 </plugin>
