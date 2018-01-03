@@ -32,7 +32,7 @@ import android.util.Log;
 public class CDVSecurityProvider extends CordovaPlugin {
 
     private static String LOG_TAG =  CDVSecurityProvider.class.getSimpleName();
-    private static Context CONTEXT;
+    private static Context App_Context;
 
     private Context getApplicationContext() {
         return this.cordova.getActivity().getApplicationContext();
@@ -50,18 +50,18 @@ public class CDVSecurityProvider extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d(LOG_TAG, "CDVSecurityProvider Action Call" + action);
         if( action.equals("makeAsyncUpdateSecurityProvider")) {
-            CONTEXT = this.getApplicationContext();
+            App_Context = this.getApplicationContext();
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     try {
-                        ProviderInstaller.installIfNeeded();
+                        ProviderInstaller.installIfNeeded(App_Context);
                         Log.d(LOG_TAG, "ProviderInstaller Update Success");
                     } catch (GooglePlayServicesRepairableException e) {
 
                         // Indicates that Google Play services is out of date, disabled, etc.
 
                         // Prompt the user to install/update/enable Google Play services.
-                        GooglePlayServicesUtil.showErrorNotification(e.getConnectionStatusCode(), CONTEXT);
+                        GooglePlayServicesUtil.showErrorNotification(e.getConnectionStatusCode(), App_Context);
 
                         // Notify the SyncManager that a soft error occurred.
                         // syncResult.stats.numIOExceptions++;
