@@ -47,7 +47,7 @@ public class CDVSecurityProvider extends CordovaPlugin {
      * @throws JSONException
      */
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         Log.d(LOG_TAG, "CDVSecurityProvider Action Call" + action);
         if( action.equals("makeAsyncUpdateSecurityProvider")) {
             App_Context = this.getApplicationContext();
