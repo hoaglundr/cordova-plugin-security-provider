@@ -3,6 +3,6 @@ var exec = cordova.require('cordova/exec');
 
 module.exports = {
   makeAsyncUpdateSecurityProvider: function(onfulfilled, onrejected) {
-    exec(onfulfilled, onrejected, 'CDVSecurityProvider', 'makeAsyncUpdateSecurityProvider', [1,1]);
+    exec(onfulfilled, onrejected, 'CDVSecurityProvider', 'makeAsyncUpdateSecurityProvider', []);
   }
 }
