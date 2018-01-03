@@ -22,7 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.BroadcastReceiver;
 
 
 import android.util.Log;
@@ -35,10 +34,6 @@ public class CDVSecurityProvider extends CordovaPlugin {
     private static String LOG_TAG =  CDVSecurityProvider.class.getSimpleName();
 
     public static final String EVENTNAME_ERROR = "event name null or empty.";
-
-    final java.util.Map<String,BroadcastReceiver> receiverMap =
-                    new java.util.HashMap<String,BroadcastReceiver>(10);
-
 
     private Context getApplicationContext() {
         return this.cordova.getActivity().getApplicationContext();
@@ -54,6 +49,7 @@ public class CDVSecurityProvider extends CordovaPlugin {
      */
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        Log.d(LOG_TAG, "CDVSecurityProvider Action Call" + action);
         if( action.equals("makeAsyncUpdateSecurityProvider")) {
 
             final String eventName = args.getString(0);
