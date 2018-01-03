@@ -15,7 +15,7 @@
 
   <platform name="android">
     <config-file parent="/*" target="res/xml/config.xml">
-      <feature name="broadcaster">
+      <feature name="CDVSecurityProvider">
         <param name="android-package" value="org.bsc.cordova.CDVSecurityProvider" />
       </feature>
     </config-file>
