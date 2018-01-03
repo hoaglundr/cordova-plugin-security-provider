@@ -33,8 +33,6 @@ public class CDVSecurityProvider extends CordovaPlugin {
 
     private static String LOG_TAG =  CDVSecurityProvider.class.getSimpleName();
 
-    public static final String EVENTNAME_ERROR = "event name null or empty.";
-
     private Context getApplicationContext() {
         return this.cordova.getActivity().getApplicationContext();
     }
@@ -52,40 +50,42 @@ public class CDVSecurityProvider extends CordovaPlugin {
         Log.d(LOG_TAG, "CDVSecurityProvider Action Call" + action);
         if( action.equals("makeAsyncUpdateSecurityProvider")) {
 
-            final String eventName = args.getString(0);
+            cordova.getThreadPool().execute(new Runnable() {
+                public void run() {
+                    try {
+                        ProviderInstaller.installIfNeeded(this.getApplicationContext());
+                        Log.d(LOG_TAG, "ProviderInstaller Update Success");
+                    } catch (GooglePlayServicesRepairableException e) {
 
-            try {
-                ProviderInstaller.installIfNeeded(this.getApplicationContext());
-                Log.d(LOG_TAG, "ProviderInstaller Update Success");
-            } catch (GooglePlayServicesRepairableException e) {
+                        // Indicates that Google Play services is out of date, disabled, etc.
 
-                // Indicates that Google Play services is out of date, disabled, etc.
+                        // Prompt the user to install/update/enable Google Play services.
+                        GooglePlayServicesUtil.showErrorNotification(e.getConnectionStatusCode(), this.getApplicationContext());
 
-                // Prompt the user to install/update/enable Google Play services.
-                GooglePlayServicesUtil.showErrorNotification(e.getConnectionStatusCode(), this.getApplicationContext());
+                        // Notify the SyncManager that a soft error occurred.
+                        // syncResult.stats.numIOExceptions++;
 
-                // Notify the SyncManager that a soft error occurred.
-                // syncResult.stats.numIOExceptions++;
+                        Log.d(LOG_TAG, "ProviderInstaller failed: GooglePlayServicesRepairableException");
+                        return;
 
-                Log.d(LOG_TAG, "ProviderInstaller failed: GooglePlayServicesRepairableException");
-                return false;
+                    } catch (GooglePlayServicesNotAvailableException e) {
+                        // Indicates a non-recoverable error; the ProviderInstaller is not able
+                        // to install an up-to-date Provider.
 
-            } catch (GooglePlayServicesNotAvailableException e) {
-                // Indicates a non-recoverable error; the ProviderInstaller is not able
-                // to install an up-to-date Provider.
+                        // Notify the SyncManager that a hard error occurred.
+                        // syncResult.stats.numAuthExceptions++;
 
-                // Notify the SyncManager that a hard error occurred.
-                // syncResult.stats.numAuthExceptions++;
+                        Log.d(LOG_TAG, "ProviderInstaller failed: GooglePlayServicesNotAvailableException");
+                        return;
+                    }
 
-                Log.d(LOG_TAG, "ProviderInstaller failed: GooglePlayServicesNotAvailableException");
-                return false;
-            }
-
-            // If this is reached, you know that the provider was already up-to-date,
-            // or was successfully updated.
+                    // If this is reached, you know that the provider was already up-to-date,
+                    // or was successfully updated.
 
 
-            callbackContext.success();
+                    callbackContext.success();
+                }
+            });
             return true;
         }
         return false;
